@@ -1,3 +1,4 @@
+/*
 let rerenderEntireTree = () => {
 }
 
@@ -57,8 +58,8 @@ export const subscribe = (observer) => {
 }
 
 export default state
+*/
 
-/*
 let store = {
     _subscribe() {
         console.log('no subscribers (observers)')
@@ -139,4 +140,4 @@ let store = {
 
 }
 
-export default store*/
+export default store
