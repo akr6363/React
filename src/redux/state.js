@@ -61,7 +61,7 @@ export default state
 */
 
 let store = {
-    _subscribe() {
+    _callSubscribes() {
         console.log('no subscribers (observers)')
     },
     _state: {
@@ -125,16 +125,16 @@ let store = {
         }
         this._state.profilePages.posts.push(newPost)
         this._state.profilePages.newPostText = ''
-        this._subscribe()
+        this._callSubscribes(this._state)
     },
 
     changeMessage(newText) {
         this._state.profilePages.newPostText = newText
-        this._subscribe()
+        this._callSubscribes(this._state)
     },
 
     subscribe(observer) {
-        this._subscribe = observer
+        this. _callSubscribes = observer
     }
 
 
