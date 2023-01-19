@@ -1,3 +1,12 @@
 .descriptionBlock {
     padding: 10px;
 }
+.ava {
+    width: 100px;
+    height: 100px;
+}
+
+.banner {
+    height: 100px;
+    width: 100%;
+}

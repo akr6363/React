@@ -5,22 +5,24 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
+import {changeMessage} from "./redux/state";
 
 
 function App(props) {
-
     return (
-
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar state={props.state.navBar}/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/profile/*' element={<Profile state={props.state.profilePages}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPages}/>}/>
-                    </Routes>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar state={props.state.navBar}/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path='/profile/*' element={<Profile
+                        profilePages={props.state.profilePages}
+                        addPost={props.addPost} changeMessage={props.changeMessage}/>}/>
+                    <Route path='/dialogs/*' element={<Dialogs
+                        state={props.state.dialogsPages}/>}/>
+                </Routes>
             </div>
+        </div>
 
     );
 }
