@@ -1,0 +1,13 @@
+.friendsPhoto {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.friend {
+    margin-right: 10px;
+}
+
+.friendName {
+    color: white;
+}
