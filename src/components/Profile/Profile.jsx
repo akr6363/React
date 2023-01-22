@@ -1,7 +1,7 @@
 import MyPosts from './MyPosts/MyPosts';
 import classes from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {changeMessage} from "../../redux/state";
+import {changeMessage} from "../../redux/store";
 
 const Profile = (props) => {
     return (
