@@ -1,6 +1,5 @@
 import classes from './Friend.module.css';
 import {NavLink} from "react-router-dom";
-import Message from "../../Dialogs/Message/Message";
 
 const Friend = (props) => {
     return (

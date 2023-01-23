@@ -1,12 +1,11 @@
 import classes from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import Friend from "./Friends/Friend";
-import DialogItem from "../Dialogs/DialogItem/DialogItem";
 
-const setActive = (NavData) => NavData.isActive ? classes.activeLink : ''
 const Navbar = (props) => {
 
-    let friendsElements = props.state.friends
+    const setActive = (NavData) => NavData.isActive ? classes.activeLink : ''
+    let friendsElements = props.navBar.friends
         .map(f => <Friend name={f.name} photo={f.photo}/>);
 
     return (
