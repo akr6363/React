@@ -2,26 +2,32 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_POST_MESSAGE = 'CHANGE-POST-MESSAGE';
 
 let initialState = {
-        posts: [
-            {id: 1, message: 'Hi, how are you', likeCount: 12},
-            {id: 1, message: "It's my first post", likeCount: 35},
-        ],
-        newPostText: 'it-kamasutra.com',
-    }
+    posts: [
+        {id: 1, message: 'Hi, how are you', likeCount: 12},
+        {id: 1, message: "It's my first post", likeCount: 35},
+    ],
+    newPostText: 'it-kamasutra.com',
+}
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
-                id: 5,
+                id: state.posts.length + 1,
                 message: state.newPostText,
                 likeCount: 0,
             }
-            state.posts.push(newPost)
-            state.newPostText = '';
-            return state;
-        case CHANGE_POST_MESSAGE:
-            state.newPostText = action.newText;
-            return state;
+            return  {
+                ...state,
+                newPostText: '',
+                posts: [...state.posts, newPost]
+            }
+
+        case CHANGE_POST_MESSAGE: {
+            return  {
+                ...state,
+                newPostText: action.newText
+            }
+        }
         default:
             return state;
     }

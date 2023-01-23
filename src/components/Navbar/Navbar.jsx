@@ -6,7 +6,7 @@ const Navbar = (props) => {
 
     const setActive = (NavData) => NavData.isActive ? classes.activeLink : ''
     let friendsElements = props.navBar.friends
-        .map(f => <Friend name={f.name} photo={f.photo}/>);
+        .map(f => <Friend name={f.name} key={f.id} photo={f.photo}/>);
 
     return (
         <nav className={classes.nav}>
