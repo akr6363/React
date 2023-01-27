@@ -61,7 +61,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let obj2 = {
+let action = {
     follow,
     unfollow,
     setUsers,
@@ -70,4 +70,4 @@ let obj2 = {
     toggleIsFetching
 }
 
-export default connect(mapStateToProps, obj2)(UsersContainer)
+export default connect(mapStateToProps, action)(UsersContainer)
