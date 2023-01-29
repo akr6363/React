@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Users.module.css";
 import userPhoto from "../../assets/img/user.png";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -30,10 +31,34 @@ const Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(u.id)
+
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': '0506d89d-a227-4922-9ef7-6564b7940ce0',
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                        })
+
+
                                 }}>follow</button>
                                 : <button onClick={() => {
-                                    props.follow(u.id)
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': '0506d89d-a227-4922-9ef7-6564b7940ce0',
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.follow(u.id)
+                                                console.log(response)
+                                            }
+                                        })
                                 }}>Unfollow</button>
                             }
 
