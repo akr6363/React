@@ -1,9 +1,12 @@
-import {usersAPI} from "../api/api";
-import {follow, toggleIsFollowingProgress} from "./users-reducer";
+import {profileAPI, usersAPI} from "../api/api";
+import {follow} from "./users-reducer";
+
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_MESSAGE = 'CHANGE-POST-MESSAGE';
 const SET_PROFILE = 'SET_PROFILE'
+const SET_STATUS = 'SET_STATUS'
+const UPDATE_STATUS = 'UPDATE_STATUS'
 
 let initialState = {
     posts: [
@@ -11,7 +14,8 @@ let initialState = {
         {id: 1, message: "It's my first post", likeCount: 35},
     ],
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: null,
+    status: '',
 }
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -21,14 +25,14 @@ export const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likeCount: 0,
             }
-            return  {
+            return {
                 ...state,
                 newPostText: '',
                 posts: [...state.posts, newPost]
             }
 
         case CHANGE_POST_MESSAGE: {
-            return  {
+            return {
                 ...state,
                 newPostText: action.newText
             }
@@ -40,6 +44,14 @@ export const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
+
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
+
         default:
             return state;
     }
@@ -52,12 +64,30 @@ export const onPostChangeActionCreator = (text) => ({
 
 export const setProfile = (profile) => ({type: SET_PROFILE, profile})
 
-export const getProfile = (profileId) => (dispatch) => {
-        usersAPI.getProfile(profileId)
-            .then(data => {
-                dispatch(setProfile(data))
-            })
-    }
+export const setStatus = (status) => ({type: SET_STATUS, status})
 
+// export const updateStatus = (status) => ({type: SET_STATUS, status})
+
+export const getProfile = (profileId) => (dispatch) => {
+    profileAPI.getProfile(profileId)
+        .then(data => {
+            dispatch(setProfile(data))
+        })
+}
+export const getStatus = (profileId) => (dispatch) => {
+    profileAPI.getStatus(profileId)
+        .then(data => {
+            dispatch(setStatus(data))
+        })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+        })
+}
 
 export default profileReducer
