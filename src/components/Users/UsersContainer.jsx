@@ -10,8 +10,7 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthNavigate} from "../HOC/withAuthNavigate";
-import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -65,6 +64,11 @@ let action = {
     postFollow
 }
 
-let AuthNavigateComponent = withAuthNavigate(UsersContainer)
+export default compose(
+    connect(mapStateToProps, action),
+)(UsersContainer)
 
-export default connect(mapStateToProps, action)(AuthNavigateComponent)
+
+
+
+

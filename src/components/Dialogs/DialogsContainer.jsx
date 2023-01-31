@@ -20,9 +20,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-
-let AuthNavigateComponent = withAuthNavigate(Dialogs)
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthNavigateComponent)
-
-export default DialogsContainer
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthNavigate
+)(Dialogs)
