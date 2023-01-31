@@ -52,13 +52,12 @@ export const onPostChangeActionCreator = (text) => ({
 
 export const setProfile = (profile) => ({type: SET_PROFILE, profile})
 
-export const getProfile = (profileId) => {
-    return(dispatch) => {
+export const getProfile = (profileId) => (dispatch) => {
         usersAPI.getProfile(profileId)
             .then(data => {
                 dispatch(setProfile(data))
             })
     }
-}
+
 
 export default profileReducer

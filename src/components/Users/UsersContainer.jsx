@@ -10,6 +10,8 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthNavigate} from "../HOC/withAuthNavigate";
+import Dialogs from "../Dialogs/Dialogs";
 
 
 class UsersContainer extends React.Component {
@@ -25,7 +27,6 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -64,4 +65,6 @@ let action = {
     postFollow
 }
 
-export default connect(mapStateToProps, action)(UsersContainer)
+let AuthNavigateComponent = withAuthNavigate(UsersContainer)
+
+export default connect(mapStateToProps, action)(AuthNavigateComponent)
